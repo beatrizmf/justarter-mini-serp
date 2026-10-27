@@ -15,7 +15,6 @@ describe('KindFilter', () => {
   // - expect(link).toHaveAttribute('href', '...') and toHaveAttribute('aria-current', 'page')
   // - Not sure what is on the screen? screen.debug()
   it.todo('shows each kind with its count, and zero for kinds without results')
-  it.todo('"Tudo" adds up every kind')
   it.todo('each link goes to the kind route, keeping the search')
   it.todo('marks the current kind with aria-current')
 })

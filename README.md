@@ -6,8 +6,28 @@ Uma mini cópia de uma página de resultados de busca, feita para exercitar os c
 O "banco de dados" é um JSON com **90 documentos fictícios** (`data/documents.json`) de cinco tipos: jurisprudência,
 legislação, notícias, modelos de peças e doutrina. A busca ainda não mostra doutrina: esse é o exercício da aula 1.
 
-Aqui não tem nenhuma solução. Os exercícios e o desafio são feitos neste projeto, e cada um tem um comando que confere
+Aqui não tem nenhuma solução. Os exercícios e os desafios são feitos neste projeto, e cada um tem um comando que confere
 se você terminou.
+
+## O que você precisa saber antes
+
+**Aula 1 (TypeScript + React/Next)**
+
+- **JavaScript moderno:** `let`/`const`, arrow functions, desestruturação (`const { q } = query`), spread (`{ ...rest }`),
+  template strings, `import`/`export`, `map`/`filter`/`find`, Promises e `async`/`await`.
+- **HTML e CSS básicos:** formulário, link, lista.
+- **Terminal:** `cd`, `npm install`, `npm run <script>`.
+- **Git e GitHub:** clonar, commit e push, e uma conta no GitHub (para o Codespace).
+
+Não precisa saber TypeScript, React nem Next: é o que a aula ensina.
+
+**Aula 2 (testes)**
+
+- O conteúdo da aula 1: tipos, componentes, props e `getServerSideProps`.
+- **Funções como valor** (callbacks): `it('...', () => { ... })` recebe uma função.
+- **Promises e `async`/`await`:** os testes de componente esperam a tela com `await`.
+
+Não precisa ter escrito testes antes.
 
 ## Como rodar
 
@@ -41,7 +61,8 @@ npm run dev               # http://localhost:3000
 | `npm run build` | build de produção: mostra quais páginas são estáticas (○), SSG (●) e SSR (ƒ) |
 | `npm run verify:class-1` | confere o exercício da aula 1 |
 | `npm run verify:class-2` | confere o exercício da aula 2 |
-| `npm run verify:challenge` | confere o desafio do autocomplete |
+| `npm run verify:challenge-1` | confere o desafio da aula 1 (autocomplete) |
+| `npm run verify:challenge-2` | confere o desafio da aula 2 (testes) |
 
 A busca tem uma latência artificial de 400 ms para dar para ver a diferença entre SSR e CSR
 (`SEARCH_LATENCY_MS=0 npm run dev` desliga).
@@ -112,7 +133,9 @@ Os testes estão em `it.todo`, com dicas nos comentários. Troque cada `it.todo(
 Pronto quando `npm run verify:class-2` mostrar tudo com ✓. Além de rodar os seus testes, ele troca o código por versões
 com bug (mutantes) e confere se os seus testes percebem.
 
-## Desafio para quem quer se aprofundar: autocomplete
+## Desafios para quem quer se aprofundar
+
+### Desafio da aula 1: autocomplete
 
 A barra de busca ainda não sugere nada. A rota `/api/suggestions?q=...` já existe e devolve `{ "suggestions": string[] }`.
 Faça a `SearchBar` mostrar sugestões enquanto a pessoa digita:
@@ -122,11 +145,29 @@ Faça a `SearchBar` mostrar sugestões enquanto a pessoa digita:
 - descartar a resposta de uma busca antiga: flag `ignore` na limpeza do `useEffect`, como recomenda a
   [documentação do React](https://react.dev/learn/you-might-not-need-an-effect#fetching-data);
 - uma lista (`role="listbox"`, com itens `role="option"`) abaixo do campo; clicar numa sugestão faz a busca;
-- bônus: ↑ ↓ e Enter, um `useDebouncedValue<T>` genérico e testes com relógio falso (`jest.useFakeTimers`).
+- bônus: ↑ ↓ e Enter, e um `useDebouncedValue<T>` genérico.
 
 Pense: por que o autocomplete é CSR, se a SERP é SSR?
 
-Pronto quando `npm run verify:challenge` mostrar tudo com ✓.
+Pronto quando `npm run verify:challenge-1` mostrar tudo com ✓.
+
+### Desafio da aula 2: teste o que ainda não tem teste
+
+Três partes do projeto não têm nenhum teste. Crie um arquivo para cada uma, um por tipo de teste da aula:
+
+1. **Unidade:** `src/search/highlight.test.ts`, para `highlight()` em `src/search/highlight.ts`. Ela ignora acento e
+   maiúscula para achar o termo, mas devolve o texto original (`usucapiao` marca `Usucapião`); marca todas as ocorrências;
+   sem termos de busca, devolve o texto inteiro sem marca.
+2. **Componente, com mock:** `src/components/Pagination.test.tsx`, para `src/components/Pagination.tsx`. Ela some quando
+   só há 1 página; não tem "Anterior" na primeira nem "Próxima" na última; marca a página atual com `aria-current`; e os
+   links mantêm a busca e a ordem (`o=data`). Ela lê a rota do `useRouter`: faça o mock como no `SortSelect.test.tsx`.
+3. **Integração:** `tests/pages/document-page.test.ts`, para o `getStaticPaths` e o `getStaticProps` de
+   `pages/documento/[id].tsx`, com o banco de verdade. Um id que existe recebe o documento; um id que não existe é 404
+   (`notFound`); e `fallback` é `false`. Dica: `@jest-environment node` no topo do arquivo, como em
+   `src/serp/server.test.ts`.
+
+Pronto quando `npm run verify:challenge-2` mostrar tudo com ✓. Como no exercício, ele troca o código por versões com
+bug e confere se os seus testes percebem.
 
 ## Referências
 

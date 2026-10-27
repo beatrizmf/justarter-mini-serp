@@ -1,13 +1,17 @@
 import baseConfig from '../jest.config.mjs'
 
-// Only for `npm run verify:class-2`: swaps one module for a mutant (a copy with
-// a bug) and runs the matching test. If the tests are good, they fail.
+// Only for `npm run verify:class-2` and `verify:challenge-2`: swaps one module
+// for a mutant (a copy with a bug) and runs the matching test. If the tests are
+// good, they fail.
 // next/jest's SWC rewrites `@/...` imports to relative paths before Jest
 // resolves them, so the patterns match the end of the path.
 const MUTANTS = {
   pagination: ['(^|/)pagination$', '<rootDir>/verification/mutants/pagination.ts'],
   filter: ['(^|/)KindFilter$', '<rootDir>/verification/mutants/KindFilter.tsx'],
   sort: ['(^|/)SortSelect$', '<rootDir>/verification/mutants/SortSelect.tsx'],
+  highlight: ['(^|/)highlight$', '<rootDir>/verification/mutants/highlight.ts'],
+  pages: ['(^|/)Pagination$', '<rootDir>/verification/mutants/Pagination.tsx'],
+  document: ['(^|/)documento/\\[id\\]$', '<rootDir>/verification/mutants/document-page.tsx'],
 }
 
 const mutant = MUTANTS[process.env.MUTANT ?? '']

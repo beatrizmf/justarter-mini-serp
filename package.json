@@ -11,7 +11,8 @@
     "test:watch": "jest --watch",
     "verify:class-1": "node scripts/verify.mjs class-1",
     "verify:class-2": "node scripts/verify.mjs class-2",
-    "verify:challenge": "node scripts/verify.mjs challenge"
+    "verify:challenge-1": "node scripts/verify.mjs challenge-1",
+    "verify:challenge-2": "node scripts/verify.mjs challenge-2"
   },
   "dependencies": {
     "next": "16.4.3",
