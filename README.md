@@ -37,7 +37,14 @@ Não precisa ter escrito testes antes.
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/beatrizmf/justarter-mini-serp)
 
 Clique no botão (ou, no repositório, **Code › Codespaces › Create codespace on main**). O ambiente sobe com Node 22 e já
-roda o `npm install`. Depois, no terminal, rode `npm run dev` e clique em **Open in Browser** no aviso da porta 3000.
+roda o `npm install`. Depois:
+
+1. Se aparecer "Você confia nos autores dos arquivos nesta pasta?", clique em **Confiar na pasta e continuar**.
+2. O terminal já abre na parte de baixo (se não abrir: menu **☰ › Terminal › Novo Terminal**). Rode `npm run dev`.
+3. No aviso da porta 3000, clique em **Abrir no Navegador** (*Open in Browser*). Se o aviso sumir, abra a aba
+   **Portas** e clique no ícone de globo da porta 3000.
+
+Se a página não mudar depois de salvar um arquivo, pare o servidor com **Ctrl+C** no terminal e rode `npm run dev` de novo.
 
 Quer guardar o que fez no seu GitHub? Faça commit e `git push`: o Codespace oferece criar um fork na sua conta.
 
