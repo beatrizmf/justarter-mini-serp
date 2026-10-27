@@ -1,0 +1,34 @@
+{
+  "name": "justarter-mini-serp",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "verify:class-1": "node scripts/verify.mjs class-1",
+    "verify:class-2": "node scripts/verify.mjs class-2",
+    "verify:challenge": "node scripts/verify.mjs challenge"
+  },
+  "dependencies": {
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.8",
+    "@types/jest": "30.0.0",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "jest": "30.5.2",
+    "jest-environment-jsdom": "30.5.2",
+    "typescript": "7.0.2"
+  }
+}
