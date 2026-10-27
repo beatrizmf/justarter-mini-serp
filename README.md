@@ -40,7 +40,8 @@ Clique no botão (ou, no repositório, **Code › Codespaces › Create codespac
 roda o `npm install`. Depois:
 
 1. Se aparecer "Você confia nos autores dos arquivos nesta pasta?", clique em **Confiar na pasta e continuar**.
-2. O terminal já abre na parte de baixo (se não abrir: menu **☰ › Terminal › Novo Terminal**). Rode `npm run dev`.
+2. O terminal já abre na parte de baixo (se não abrir: menu **☰ › Terminal › Novo Terminal**). Rode `npm install` e
+   depois `npm run dev`.
 3. No aviso da porta 3000, clique em **Abrir no Navegador** (*Open in Browser*). Se o aviso sumir, abra a aba
    **Portas** e clique no ícone de globo da porta 3000.
 
