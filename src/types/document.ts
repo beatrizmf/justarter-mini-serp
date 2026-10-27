@@ -41,10 +41,11 @@ export interface DocumentTemplate extends BaseDocument {
   downloads: number
 }
 
-// TODO exercise 1, step 1: data/documents.json already has doctrine documents
-// (kind 'doctrine', with author, work, publisher and edition), but the search
-// drops them because this union does not know them. Create the `Doctrine`
-// interface and add it to the union. Then run `npm run typecheck`.
+// TODO exercise 1, step 1: data/documents.json already has doctrine documents,
+// but the search drops them because this union does not know them. Create the
+// `Doctrine` interface (extending BaseDocument, like the others) and add it to
+// the union. Its own fields: kind 'doctrine', author, work and publisher
+// (strings) and edition (a number). Then run `npm run typecheck`.
 export type SearchDocument = Jurisprudence | Legislation | News | DocumentTemplate
 
 /** The union of every `kind` value, derived from the type above: no repeated list. */

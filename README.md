@@ -19,7 +19,8 @@ se você terminou.
 - **Terminal:** `cd`, `npm install`, `npm run <script>`.
 - **Git e GitHub:** clonar, commit e push, e uma conta no GitHub (para o Codespace).
 
-Não precisa saber TypeScript, React nem Next: é o que a aula ensina.
+A aula se apoia nesses conteúdos, mas não vai explicá-los: o foco é TypeScript, React e Next. Se aparecer algum que você
+não conhece, pergunte na hora.
 
 **Aula 2 (testes)**
 
@@ -110,8 +111,33 @@ data/documents.json            os documentos fictícios
 O banco tem 16 documentos de doutrina, e a busca descarta todos, porque o tipo não existe. Deixe o `npm run typecheck`
 aberto num terminal: ele guia os passos.
 
-1. **O tipo.** Em `src/types/document.ts`, crie a interface `Doctrine` (`kind: 'doctrine'`, mais `author`, `work`,
-   `publisher` e `edition`, que é número) e inclua na união `SearchDocument`. O compilador passa a apontar 4 erros.
+1. **O tipo.** Em `src/types/document.ts`, crie a interface `Doctrine`, estendendo `BaseDocument` como os outros tipos,
+   e inclua na união `SearchDocument`. O compilador passa a apontar 4 erros. Os campos próprios da doutrina são:
+
+   | Campo | Tipo | Exemplo |
+   |---|---|---|
+   | `kind` | `'doctrine'` | `'doctrine'` |
+   | `author` | `string` | `'Fernanda Albuquerque'` |
+   | `work` | `string` | `'Manual de Direito do Consumidor'` |
+   | `publisher` | `string` | `'Editora Lex Didática'` |
+   | `edition` | `number` | `6` |
+
+   Um documento de doutrina no `data/documents.json`:
+
+   ```json
+   {
+     "id": "doctrine-0009",
+     "kind": "doctrine",
+     "title": "Dano moral: atraso na entrega de imóvel adquirido na planta",
+     "snippet": "Capítulo fictício que analisa atraso na entrega de imóvel...",
+     "url": "/documento/doctrine-0009",
+     "publishedAt": "2024-05-30",
+     "author": "Fernanda Albuquerque",
+     "work": "Manual de Direito do Consumidor",
+     "publisher": "Editora Lex Didática",
+     "edition": 6
+   }
+   ```
 2. **Siga o compilador.** Em `src/types/document.ts`, o rótulo (`'Doutrina'`) e a rota (`'/doutrina/busca'`). Em
    `src/search/validate.ts`, o `case` da validação: quais campos uma doutrina válida precisa ter?
 3. **O card.** Crie `src/components/cards/DoctrineCard.tsx`, usando o `CardShell` como os outros cards, e trate o caso
