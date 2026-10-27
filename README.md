@@ -152,7 +152,8 @@ aberto num terminal: ele guia os passos.
 4. **A rota com SSR.** Crie `pages/doutrina/busca.tsx`, como as outras rotas de tipo. Abra
    `/doutrina/busca?q=usucapiao` e o "Exibir código-fonte": os resultados estão no HTML.
 
-Pronto quando `npm run verify:class-1` mostrar tudo com ✓.
+Pronto quando `npm run verify:class-1` mostrar tudo com ✓. No meio do exercício, a linha do compilador fica com ✗: é normal
+até o passo 3.
 
 ## Exercício da aula 2: testes
 

@@ -52,12 +52,15 @@ describe('challenge 1: autocomplete', () => {
     expect(String(fetchMock.mock.calls[0]?.[0])).toContain('/api/suggestions?q=guarda')
   })
 
-  it('does not call the API with fewer than 2 letters', async () => {
+  it('waits for at least 2 letters before calling the API', async () => {
     respondWith(['Guarda compartilhada'])
-    await typeInSearch('g')
+    const user = await typeInSearch('g')
 
     await wait(600)
     expect(fetchMock).not.toHaveBeenCalled()
+
+    await user.type(screen.getByLabelText('Buscar'), 'uarda')
+    expect(await screen.findAllByRole('option')).toHaveLength(1)
   })
 
   it('clicking a suggestion runs the search', async () => {

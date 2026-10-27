@@ -24,6 +24,14 @@ function jest(args) {
   return JSON.parse(readFileSync(output, 'utf8'))
 }
 
+/** Step 1 of exercise 1 is a type, so it is checked in the source, not by a test. */
+function doctrineType() {
+  const source = readFileSync('src/types/document.ts', 'utf8')
+  record('step 1: the Doctrine interface exists', /interface\s+Doctrine\b/.test(source))
+  const union = source.match(/type\s+SearchDocument\s*=\s*\|?\s*(\w+(?:\s*\|\s*\w+)*)/)?.[1] ?? ''
+  record('step 1: Doctrine is part of the SearchDocument union', /\bDoctrine\b/.test(union))
+}
+
 /** The checks in verification/: one line per check, named after its step. */
 function checks(file) {
   console.log('\n▶ Checks (jest)\n')
@@ -48,7 +56,7 @@ function yourTests(mutants) {
   const report = jest(files)
   record(
     'Every test passes',
-    report.numTotalTests > 0 && report.numFailedTests === 0 && report.numRuntimeErrorTestSuites === 0,
+    report.numPassedTests > 0 && report.numFailedTests === 0 && report.numRuntimeErrorTestSuites === 0,
     `${report.numPassedTests} passed, ${report.numFailedTests} failed`,
   )
   record('No it.todo left', report.numTodoTests === 0, `${report.numTodoTests} todo`)
@@ -64,7 +72,10 @@ function yourTests(mutants) {
 }
 
 const TARGETS = {
-  'class-1': () => checks('verification/class-1.check.tsx'),
+  'class-1': () => {
+    doctrineType()
+    checks('verification/class-1.check.tsx')
+  },
   'class-2': () =>
     yourTests([
       { id: 'pagination', label: 'Step 1', bug: 'Math.floor in the page count', spec: 'src/search/pagination.test.ts' },
@@ -95,6 +106,9 @@ for (const { name, passed, detail } of results) {
 if (results.every(({ passed }) => passed)) {
   console.log('\nAll good.')
 } else {
-  console.log('\nSomething is still missing: read the ✗ lines above. A bug that "went unnoticed" means a behavior has no test yet.')
+  console.log('\nSomething is still missing: read the ✗ lines above.')
+  if (results.some(({ detail }) => detail === 'the bug went unnoticed')) {
+    console.log('A bug that "went unnoticed" means a behavior has no test yet.')
+  }
   process.exit(1)
 }
