@@ -47,7 +47,7 @@ segundo plano. Depois:
 
 Se a página não mudar depois de salvar um arquivo, pare o servidor com **Ctrl+C** no terminal e rode `npm run dev` de novo.
 
-Quer guardar o que fez no seu GitHub? Faça commit e `git push`: o Codespace oferece criar um fork na sua conta.
+Quer guardar o que fez no seu GitHub, ou pedir um feedback? Veja [Pedir feedback](#pedir-feedback-abra-um-pull-request).
 
 ### Na sua máquina
 
@@ -203,6 +203,46 @@ Três partes do projeto não têm nenhum teste. Crie um arquivo para cada uma, u
 
 Pronto quando `npm run verify:challenge-2` mostrar tudo com ✓. Como no exercício, ele troca o código por versões com
 bug e confere se os seus testes percebem.
+
+## Pedir feedback: abra um pull request
+
+Não terminou o exercício a tempo, ou fez um desafio? Abra um pull request (PR) no repositório principal com o seu código:
+eu leio e deixo um feedback nele. O PR serve só para o feedback: ele não vai entrar no projeto.
+
+### No Codespace
+
+Você não precisa criar um fork antes: o Codespace cria uma cópia do repositório na sua conta no primeiro commit.
+
+1. No terminal, crie uma branch com o seu usuário do GitHub:
+
+   ```bash
+   git checkout -b aula-1-seu-usuario
+   ```
+
+2. Faça o commit. Na primeira vez, o Codespace pergunta se pode ligar o seu código a um fork: responda `y`.
+
+   ```bash
+   git add -A
+   git commit -m "Aula 1: doutrina na busca"
+   ```
+
+3. Envie a branch. Depois do passo 2, o `origin` passa a ser o seu fork.
+
+   ```bash
+   git push -u origin aula-1-seu-usuario
+   ```
+
+4. Abra o PR. No painel **Controle do Código-Fonte** (o ícone de ramificação na barra da esquerda), clique no ícone de
+   pull request, no topo. Confira que o destino é `beatrizmf/justarter-mini-serp`, branch `main`, e clique em
+   **Create**. Outro caminho: abra o seu fork no GitHub e clique em **Compare & pull request**.
+
+5. No título, coloque a aula e o seu nome (por exemplo, `Aula 1 · Maria`). Na descrição, conte até onde chegou e onde
+   travou.
+
+### Na sua máquina
+
+Faça um fork pelo botão **Fork** do repositório, clone o seu fork, crie a branch, faça o commit e o `git push`, e abra o
+PR para `beatrizmf/justarter-mini-serp` pelo botão **Compare & pull request** do GitHub.
 
 ## Referências
 
